@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [2025-11-22 01:03:40] WARN [BankClient] Неудачный вход пользователя: user1
 [2025-11-22 01:03:56] WARN [BankClient] Неудачный вход пользователя: admin
 [2025-11-22 01:11:04] WARN [BankClient] Неудачный вход пользователя: user1
@@ -243,3 +244,56 @@
 [2025-11-22 11:35:20] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: Sergey): Счета получены
 [2025-11-22 11:35:20] INFO [BankClient] Операция GET_BALANCE (пользователь: Sergey): Баланс получен
 [2025-11-22 11:35:30] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: Sergey): Счета получены
+=======
+[2025-11-22 12:41:01] INFO [BankClient] Подключение к серверу установлено
+[2025-11-22 12:41:39] INFO [BankClient] Подключение к серверу установлено
+[2025-11-22 12:41:46] INFO [BankClient] Операция REGISTER: Регистрация успешна
+[2025-11-22 12:41:51] INFO [BankClient] Операция LOGIN: Авторизация успешна
+[2025-11-22 12:41:51] INFO [BankClient] Успешный вход пользователя: user1
+[2025-11-22 12:42:03] INFO [BankClient] Операция REGISTER: Регистрация успешна
+[2025-11-22 12:42:06] INFO [BankClient] Операция LOGIN: Авторизация успешна
+[2025-11-22 12:42:06] INFO [BankClient] Успешный вход пользователя: user2
+[2025-11-22 12:42:10] INFO [BankClient] Операция CREATE_ACCOUNT (пользователь: user2): Счет успешно создан: ACC1763800849149
+[2025-11-22 12:42:14] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user2): Счета получены
+[2025-11-22 12:42:14] INFO [BankClient] Операция GET_BALANCE (пользователь: user2): Баланс получен
+[2025-11-22 12:42:23] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user2): Счета получены
+[2025-11-22 12:42:23] INFO [BankClient] Операция GET_BALANCE (пользователь: user2): Баланс получен
+[2025-11-22 12:42:27] INFO [BankClient] Операция DEPOSIT (пользователь: user2): Счет успешно пополнен
+[2025-11-22 12:42:27] INFO [BankClient] Операция GET_BALANCE (пользователь: user2): Баланс получен
+[2025-11-22 12:42:36] INFO [BankClient] Операция CREATE_ACCOUNT (пользователь: user1): Счет успешно создан: ACC1763800849150
+[2025-11-22 12:42:39] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:42:39] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:42:46] INFO [BankClient] Операция DEPOSIT (пользователь: user1): Счет успешно пополнен
+[2025-11-22 12:42:46] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:42:51] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:42:51] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:42:52] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:42:54] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:42:54] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:43:02] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:43:02] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:49:55] INFO [BankClient] Подключение к серверу установлено
+[2025-11-22 12:50:14] INFO [BankClient] Подключение к серверу установлено
+[2025-11-22 12:50:19] INFO [BankClient] Операция LOGIN: Авторизация успешна
+[2025-11-22 12:50:19] INFO [BankClient] Успешный вход пользователя: user2
+[2025-11-22 12:50:31] INFO [BankClient] Операция LOGIN: Авторизация успешна
+[2025-11-22 12:50:31] INFO [BankClient] Успешный вход пользователя: user1
+[2025-11-22 12:50:33] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:50:33] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:50:38] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user2): Счета получены
+[2025-11-22 12:50:38] INFO [BankClient] Операция GET_BALANCE (пользователь: user2): Баланс получен
+[2025-11-22 12:50:49] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:50:49] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:50:51] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:51:10] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:51:10] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:51:18] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:51:24] INFO [BankClient] Операция TRANSFER (пользователь: user1): Счет получателя не найден
+[2025-11-22 12:51:43] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user2): Счета получены
+[2025-11-22 12:51:43] INFO [BankClient] Операция GET_BALANCE (пользователь: user2): Баланс получен
+[2025-11-22 12:52:01] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:52:01] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+[2025-11-22 12:52:08] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
+[2025-11-22 12:52:19] INFO [BankClient] Операция TRANSFER (пользователь: user1): Перевод выполнен успешно
+[2025-11-22 12:52:19] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+>>>>>>> Stashed changes

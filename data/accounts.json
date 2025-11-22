@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"user1":[{"accountNumber":"ACC1763762486606","owner":"user1","balance":10000.0,"currency":"RUB"},{"accountNumber":"ACC1763762486607","owner":"user1","balance":190.0,"currency":"USD"},{"accountNumber":"ACC1763762880739","owner":"user1","balance":0.0,"currency":"EUR"},{"accountNumber":"ACC1763763120619","owner":"user1","balance":12042.0,"currency":"USD"},{"accountNumber":"ACC1763796425472","owner":"user1","balance":150.0,"currency":"EUR"}],"user2":[{"accountNumber":"ACC1763762486605","owner":"user2","balance":1000.0,"currency":"RUB"}],"Sergey":[{"accountNumber":"ACC1763796425473","owner":"Sergey","balance":10000.0,"currency":"RUB"}]}
+=======
+{"user1":[{"accountNumber":"ACC1763800849150","owner":"user1","balance":15500.0,"currency":"RUB"}],"user2":[{"accountNumber":"ACC1763800849149","owner":"user2","balance":12600.0,"currency":"RUB"}]}
+>>>>>>> Stashed changes

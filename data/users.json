@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"user1":{"login":"user1","password":"e6c3da5b206634d7f3f3586d747ffdb36b5c675757b380c6a5fe5c570c714349"},"user2":{"login":"user2","password":"1ba3d16e9881959f8c9a9762854f72c6e6321cdd44358a10a4e939033117eab9"},"Sergey":{"login":"Sergey","password":"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"}}
+=======
+{"user1":{"login":"user1","password":"e6c3da5b206634d7f3f3586d747ffdb36b5c675757b380c6a5fe5c570c714349"},"user2":{"login":"user2","password":"1ba3d16e9881959f8c9a9762854f72c6e6321cdd44358a10a4e939033117eab9"}}
+>>>>>>> Stashed changes
