@@ -1,0 +1,3 @@
+java -cp "bank-app.jar;lib\gson-2.8.8.jar" server.BankServer
+
+java -jar bank-app.jar
