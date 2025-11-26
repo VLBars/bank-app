@@ -16,7 +16,7 @@ public class BankResponse implements Serializable {
         this.message = message;
     }
     
-    // Getters and setters
+    // Методы доступа (геттеры и сеттеры)
     public boolean isSuccess() { return success; }
     public String getMessage() { return message; }
     public List<Account> getAccounts() { return accounts; }

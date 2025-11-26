@@ -12,7 +12,7 @@ public class User implements Serializable {
         this.password = password;
     }
     
-    // Getters
+    // Методы доступа (геттеры)
     public String getLogin() { return login; }
     public String getPassword() { return password; }
 }

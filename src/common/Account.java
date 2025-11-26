@@ -16,7 +16,7 @@ public class Account implements Serializable {
         this.currency = currency;
     }
     
-    // Getters and setters
+    // Методы доступа (геттеры и сеттеры)
     public String getAccountNumber() { return accountNumber; }
     public String getOwner() { return owner; }
     public double getBalance() { return balance; }
