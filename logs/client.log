@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [2025-11-22 01:03:40] WARN [BankClient] Неудачный вход пользователя: user1
 [2025-11-22 01:03:56] WARN [BankClient] Неудачный вход пользователя: admin
 [2025-11-22 01:11:04] WARN [BankClient] Неудачный вход пользователя: user1
@@ -245,6 +246,8 @@
 [2025-11-22 11:35:20] INFO [BankClient] Операция GET_BALANCE (пользователь: Sergey): Баланс получен
 [2025-11-22 11:35:30] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: Sergey): Счета получены
 =======
+=======
+>>>>>>> Stashed changes
 [2025-11-22 12:41:01] INFO [BankClient] Подключение к серверу установлено
 [2025-11-22 12:41:39] INFO [BankClient] Подключение к серверу установлено
 [2025-11-22 12:41:46] INFO [BankClient] Операция REGISTER: Регистрация успешна
@@ -296,4 +299,7 @@
 [2025-11-22 12:52:08] INFO [BankClient] Операция GET_ACCOUNTS (пользователь: user1): Счета получены
 [2025-11-22 12:52:19] INFO [BankClient] Операция TRANSFER (пользователь: user1): Перевод выполнен успешно
 [2025-11-22 12:52:19] INFO [BankClient] Операция GET_BALANCE (пользователь: user1): Баланс получен
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
