@@ -8,7 +8,7 @@ public class Transaction implements Serializable {
     private static final long serialVersionUID = 4L;
     private String id;
     private String accountNumber;
-    private String type; // DEPOSIT, WITHDRAW, TRANSFER_IN, TRANSFER_OUT
+    private String type; // Тип операции: DEPOSIT, WITHDRAW, TRANSFER_IN, TRANSFER_OUT
     private double amount;
     private String currency;
     private String timestamp; // Сохраняем как строку для Gson
@@ -25,11 +25,11 @@ public class Transaction implements Serializable {
         this.description = description;
     }
     
-    // Конструктор по умолчанию для Gson
+    // Конструктор по умолчанию (нужен для Gson)
     public Transaction() {
     }
     
-    // Getters and Setters (нужны для Gson)
+    // Методы доступа (геттеры и сеттеры, нужны для Gson)
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
     
