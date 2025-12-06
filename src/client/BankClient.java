@@ -98,8 +98,7 @@ public class BankClient {
     
     public BankResponse getAccountInfo(String accountNumber) {
         // Получаем информацию о счете (для определения валюты)
-        // Используем getBalance, но нам нужна валюта
-        // Временно используем обходной путь - получаем все счета
+        // Используем getBalance, но нам нужна валюта, поэтому получаем все счета
         return executeOperation(BankOperation.GET_ACCOUNTS, null, true);
     }
     

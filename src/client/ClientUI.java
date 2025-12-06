@@ -19,7 +19,6 @@ public class ClientUI {
     private static final NumberFormat currencyFormatter = new DecimalFormat("#,##0.00");
     
     public ClientUI() {
-        // Используем UTF-8 для правильной обработки русских букв
         InputStream inputStream = System.in;
         this.scanner = new Scanner(inputStream, StandardCharsets.UTF_8.name());
     }
@@ -202,7 +201,6 @@ public class ClientUI {
     }
     
     private void viewAccounts() {
-        // Всегда получаем свежие данные с сервера
         BankResponse response = client.getAccounts();
         if (response.isSuccess() && response.getAccounts() != null) {
             List<Account> accounts = response.getAccounts();
@@ -212,15 +210,12 @@ public class ClientUI {
                 System.out.println("\nВаши счета:");
                 System.out.println("─".repeat(60));
                 for (Account account : accounts) {
-                    // Получаем актуальный баланс с сервера для каждого счета
                     BankResponse balanceResponse = client.getBalance(account.getAccountNumber());
                     if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
-                        // Используем актуальный баланс
                         System.out.println("Счет: " + account.getAccountNumber() + 
                                          " | Баланс: " + formatBalance(balanceResponse.getBalance(), account.getCurrency()) + 
                                          " | Валюта: " + account.getCurrency());
                     } else {
-                        // Если не удалось получить баланс, используем данные из списка
                         System.out.println(formatAccount(account));
                     }
                 }
@@ -239,7 +234,6 @@ public class ClientUI {
         
         BankResponse response = client.getBalance(account.getAccountNumber());
         if (response.isSuccess() && response.getBalance() != null) {
-            // Используем актуальный баланс с сервера, а не из локального объекта
             System.out.println("\nСчет: " + account.getAccountNumber() + 
                              " | Баланс: " + formatBalance(response.getBalance(), account.getCurrency()) + 
                              " | Валюта: " + account.getCurrency());
@@ -265,7 +259,6 @@ public class ClientUI {
         System.out.println(response.getMessage());
         
         if (response.isSuccess()) {
-            // Получаем актуальный баланс с сервера
             BankResponse balanceResponse = client.getBalance(account.getAccountNumber());
             if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
                 System.out.println("Новый баланс: " + formatBalance(
@@ -296,7 +289,6 @@ public class ClientUI {
         System.out.println(response.getMessage());
         
         if (response.isSuccess()) {
-            // Получаем актуальный баланс с сервера
             BankResponse balanceResponse = client.getBalance(account.getAccountNumber());
             if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
                 System.out.println("Новый баланс: " + formatBalance(
@@ -311,6 +303,11 @@ public class ClientUI {
             return;
         }
         
+        BankResponse balanceResponse = client.getBalance(fromAccount.getAccountNumber());
+        if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
+            fromAccount.setBalance(balanceResponse.getBalance());
+        }
+        
         System.out.println("\nТекущий баланс: " + formatBalance(fromAccount.getBalance(), fromAccount.getCurrency()));
         
         System.out.print("Введите номер счета получателя: ");
@@ -321,16 +318,11 @@ public class ClientUI {
             return;
         }
         
-        // Получаем валюту счета получателя
-        // Сначала проверяем свои счета
         String toAccountCurrency = getAccountCurrency(toAccountNumber);
         
-        // Если счет не найден в своих счетах, это счет другого пользователя
-        // В этом случае валюта будет определена на сервере при переводе
         if (toAccountCurrency == null) {
             System.out.println("Счет получателя принадлежит другому пользователю.");
             System.out.println("Валюта будет определена автоматически при переводе.");
-            // Продолжаем без предварительной проверки валюты - сервер проверит
             toAccountCurrency = "UNKNOWN";
         }
         
@@ -347,10 +339,8 @@ public class ClientUI {
         boolean needsConversion = false;
         double convertedAmount = amount;
         
-        // Показываем информацию о конвертации только если знаем валюту счета получателя
         if (!toAccountCurrency.equals("UNKNOWN") && !fromAccount.getCurrency().equals(toAccountCurrency)) {
             needsConversion = true;
-            // Конвертация валют
             convertedAmount = CurrencyConverter.convert(amount, fromAccount.getCurrency(), toAccountCurrency);
             
             System.out.println("\n⚠️  ВНИМАНИЕ: Перевод между разными валютами!");
@@ -384,29 +374,23 @@ public class ClientUI {
         
         BankResponse response;
         if (toAccountCurrency.equals("UNKNOWN")) {
-            // Если валюта неизвестна, используем старый метод - сервер определит валюту
             response = client.transfer(fromAccount.getAccountNumber(), toAccountNumber, amount);
         } else {
-            // Если валюта известна, используем новый метод с конвертацией
             response = client.transfer(fromAccount.getAccountNumber(), toAccountNumber, amount, 
                 fromAccount.getCurrency(), toAccountCurrency);
         }
         System.out.println(response.getMessage());
         
         if (response.isSuccess()) {
-            // Получаем актуальный баланс с сервера после перевода
-            BankResponse balanceResponse = client.getBalance(fromAccount.getAccountNumber());
-            if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
+            BankResponse newBalanceResponse = client.getBalance(fromAccount.getAccountNumber());
+            if (newBalanceResponse.isSuccess() && newBalanceResponse.getBalance() != null) {
                 System.out.println("Новый баланс на вашем счете: " + formatBalance(
-                    balanceResponse.getBalance(), fromAccount.getCurrency()));
+                    newBalanceResponse.getBalance(), fromAccount.getCurrency()));
             }
         }
     }
     
     private String getAccountCurrency(String accountNumber) {
-        // Получаем информацию о счете через попытку перевода с нулевой суммой
-        // Или лучше - добавить метод для получения информации о счете
-        // Пока используем обходной путь: получаем все счета и ищем нужный
         BankResponse accountsResponse = client.getAccounts();
         if (accountsResponse.isSuccess() && accountsResponse.getAccounts() != null) {
             for (Account acc : accountsResponse.getAccounts()) {
@@ -415,9 +399,6 @@ public class ClientUI {
                 }
             }
         }
-        // Если счет не найден в своих счетах, это счет другого пользователя
-        // В этом случае нужно получить информацию с сервера
-        // Для простоты, попробуем найти через попытку перевода или добавим новый метод
         return null;
     }
     
@@ -446,7 +427,6 @@ public class ClientUI {
     }
     
     private Account selectAccount(String prompt) {
-        // Всегда получаем свежие данные с сервера
         BankResponse response = client.getAccounts();
         if (!response.isSuccess() || response.getAccounts() == null || response.getAccounts().isEmpty()) {
             System.out.println("У вас нет счетов");
@@ -456,18 +436,14 @@ public class ClientUI {
         List<Account> accounts = response.getAccounts();
         System.out.println("\n" + prompt + ":");
         System.out.println("─".repeat(60));
-        // Получаем актуальные балансы для каждого счета при отображении
         for (int i = 0; i < accounts.size(); i++) {
             Account account = accounts.get(i);
-            // Получаем актуальный баланс с сервера
             BankResponse balanceResponse = client.getBalance(account.getAccountNumber());
             if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
-                // Используем актуальный баланс
                 System.out.println((i + 1) + ". Счет: " + account.getAccountNumber() + 
                                  " | Баланс: " + formatBalance(balanceResponse.getBalance(), account.getCurrency()) + 
                                  " | Валюта: " + account.getCurrency());
             } else {
-                // Если не удалось получить баланс, используем данные из списка
                 System.out.println((i + 1) + ". " + formatAccount(account));
             }
         }
@@ -478,7 +454,12 @@ public class ClientUI {
         try {
             int index = Integer.parseInt(choice) - 1;
             if (index >= 0 && index < accounts.size()) {
-                return accounts.get(index);
+                Account selectedAccount = accounts.get(index);
+                BankResponse balanceResponse = client.getBalance(selectedAccount.getAccountNumber());
+                if (balanceResponse.isSuccess() && balanceResponse.getBalance() != null) {
+                    selectedAccount.setBalance(balanceResponse.getBalance());
+                }
+                return selectedAccount;
             } else {
                 System.out.println("Неверный номер счета");
                 return null;
@@ -520,10 +501,8 @@ public class ClientUI {
             return false;
         }
         
-        // Убираем все пробелы
         String trimmed = confirmation.trim();
         
-        // Проверяем по первому символу (более надежно для разных кодировок)
         if (trimmed.length() == 0) {
             return false;
         }
@@ -531,19 +510,15 @@ public class ClientUI {
         char firstChar = trimmed.charAt(0);
         String lowerTrimmed = trimmed.toLowerCase();
         
-        // Проверяем русские варианты: "да", "д"
-        // Проверяем по первому символу 'д' (кириллица)
         if (firstChar == 'д' || firstChar == 'Д' || 
-            firstChar == '\u0434' || firstChar == '\u0414') { // Unicode для 'д' и 'Д'
+            firstChar == '\u0434' || firstChar == '\u0414') {
             return true;
         }
         
-        // Проверяем полное слово "да"
         if (lowerTrimmed.equals("да") || lowerTrimmed.startsWith("да")) {
             return true;
         }
         
-        // Проверяем английские варианты: "yes", "y"
         if (firstChar == 'y' || firstChar == 'Y') {
             return true;
         }
@@ -572,23 +547,17 @@ public class ClientUI {
     }
     
     public static void main(String[] args) {
-        // Настройка кодировки для Windows консоли
         try {
-            // Устанавливаем UTF-8 для вывода
             System.setOut(new java.io.PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
             System.setErr(new java.io.PrintStream(System.err, true, StandardCharsets.UTF_8.name()));
             
-            // Для Windows: устанавливаем кодировку консоли
             if (System.getProperty("os.name").toLowerCase().contains("windows")) {
                 try {
-                    // Пытаемся установить UTF-8 в консоли Windows
                     new ProcessBuilder("cmd", "/c", "chcp", "65001").inheritIO().start().waitFor();
                 } catch (Exception e) {
-                    // Игнорируем ошибки, если не удалось изменить кодировку консоли
                 }
             }
         } catch (Exception e) {
-            // Если не удалось установить кодировку, продолжаем работу
             System.err.println("Предупреждение: не удалось установить UTF-8 кодировку");
         }
         

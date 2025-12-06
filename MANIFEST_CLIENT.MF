@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: client.ClientUI
+Class-Path: lib/gson-2.8.8.jar
+

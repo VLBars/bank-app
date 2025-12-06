@@ -16,7 +16,6 @@ public class Account implements Serializable {
         this.currency = currency;
     }
     
-    // Методы доступа (геттеры и сеттеры)
     public String getAccountNumber() { return accountNumber; }
     public String getOwner() { return owner; }
     public double getBalance() { return balance; }
@@ -24,6 +23,7 @@ public class Account implements Serializable {
     
     public void deposit(double amount) { balance += amount; }
     public void withdraw(double amount) { balance -= amount; }
+    public void setBalance(double balance) { this.balance = balance; }
     
     @Override
     public String toString() {
