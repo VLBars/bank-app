@@ -1,0 +1,26 @@
+# Скомпилированные классы
+bin/
+build/
+
+# JAR файлы
+*.jar
+!lib/*.jar
+
+# Данные пользователей
+data/
+
+# Логи
+logs/
+*.log
+
+# IDE файлы
+.classpath
+.project
+.settings/
+*.iml
+.idea/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
