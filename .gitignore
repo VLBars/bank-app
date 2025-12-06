@@ -2,9 +2,9 @@
 bin/
 build/
 
-# JAR файлы
+# JAR файлы (кроме библиотек в lib/)
 *.jar
-!lib/*.jar
+!lib/**/*.jar
 
 # Данные пользователей
 data/
