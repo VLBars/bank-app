@@ -211,7 +211,6 @@ public class ClientUI {
             } else {
                 System.out.println("\nВаши счета:");
                 System.out.println("─".repeat(60));
-                // Получаем актуальные балансы для каждого счета
                 for (Account account : accounts) {
                     // Получаем актуальный баланс с сервера для каждого счета
                     BankResponse balanceResponse = client.getBalance(account.getAccountNumber());
